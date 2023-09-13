@@ -1,0 +1,51 @@
+﻿<html>
+ <body>
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" class="form-control" id="Name" aria-describedby="emailHelp" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="text" class="form-control" id="Email" aria-describedby="emailHelp" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="text" class="form-control" id="Password" placeholder="Password">
+    </div>
+    <div class="form-group">
+        <label for="Course">Course</label>
+        <input type="text" class="form-control" id="Course" placeholder="Password">
+    </div>
+     <br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+</body>
+@section Scripts{
+    <script> 
+
+        $(document).ready(function(){
+            $(".btn").click(function(){
+                let param = {
+                    Name :$("#Name").val(),
+                   Email: $("#Email").val(),
+                   Password:  $("#Password").val(),
+                   Course:$("#Course").val()
+
+                };
+                $.post('/Student/Addstu',param)
+                .done(function(result){
+                    alert("Submitted");
+                        window.location.href = "/Student/Details";
+                })
+                .fail(function(){
+                    alert("Error");
+                });
+            });
+           
+    });
+    </script>
+
+}
+</html>

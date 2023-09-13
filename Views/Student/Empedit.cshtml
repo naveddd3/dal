@@ -1,0 +1,74 @@
+﻿ @model DAL_PRACTICE.Models.Student
+
+@{
+    ViewData["Title"] = "Empedit";
+}
+
+<h1>Empedit</h1>
+
+<h4>Student</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+         
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" id="id"/>
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" id="Name"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control"  id="Email"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+            <input asp-for="Password" class="form-control" id="Password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Course" class="control-label"></label>
+            <input asp-for="Course" class="form-control" id="Course" />
+                <span asp-validation-for="Course" class="text-danger"></span>
+            </div>
+            <br />
+        <button type="button" class="btn btn-primary" id="Update">Update</button>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Details">Back to List</a>
+</div>
+
+@section Scripts{
+    <script>
+    $(document).ready(function(){
+        debugger;
+            $("#Update").click(function(){
+            let param={
+                    Id: $('#id').val(),
+                    Name: $("#Name").val(),
+                    Email :$("#Email").val(),
+                    Password : $("#Password").val(),
+                    Course : $("#Course").val()
+            }
+                $.post('/Student/Addstu',param)
+                .done(function(result){
+                    alert ("Updated");
+                    window.location.href="/Student/Details";
+                })
+                .fail(function(){
+                    alert("Error");
+                });
+        })
+    })
+    </script>
+}
+ 
+ 
